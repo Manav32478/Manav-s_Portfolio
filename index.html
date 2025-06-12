@@ -27,173 +27,304 @@
     .bg-white.bg-opacity-90 {
       color: #000;
     }
+    /* Mobile menu styles */
+    .mobile-menu {
+      display: none;
+    }
+    .mobile-menu.active {
+      display: flex;
+    }
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none;
+      }
+      .mobile-menu-button {
+        display: block;
+      }
+      .parallax {
+        background-attachment: scroll;
+      }
+    }
+    
+    /* New heading styles */
+    .section-heading {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .section-heading::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      border-radius: 2px;
+      transition: all 0.4s ease;
+    }
+    .section-heading:hover::after {
+      width: 100%;
+    }
+    .section-heading-wrapper {
+      text-align: center;
+      margin-bottom: 3rem;
+      overflow: hidden;
+    }
+    .heading-highlight {
+      position: relative;
+      display: inline-block;
+    }
+    .heading-highlight::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(59, 130, 246, 0.2);
+      z-index: -1;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.5s ease;
+    }
+    .heading-highlight:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    
+    /* Pulse animation for certificates */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+    .pulse-hover:hover {
+      animation: pulse 1.5s infinite;
+    }
+    
+    /* Gradient text for hero */
+    .gradient-text {
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
   </style>
 </head>
 <body class="text-gray-800 font-sans bg-white">
 
 <!-- Navigation -->
 <nav class="bg-white shadow-md sticky top-0 z-50">
-  <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
     <h1 class="font-bold text-xl">Manav Sarvaiya</h1>
-    <div class="space-x-6">
+    
+    <!-- Desktop Menu -->
+    <div class="desktop-menu space-x-4 md:space-x-6 hidden md:block">
       <a href="#about" class="hover:text-blue-600 transition">About Me</a>
       <a href="#skills" class="hover:text-blue-600 transition">My Works</a>
       <a href="#projects" class="hover:text-blue-600 transition">Projects</a>
       <a href="#certificates" class="hover:text-blue-600 transition">Certificates</a>
       <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
     </div>
+    
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-button md:hidden focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div class="mobile-menu md:hidden hidden flex-col bg-white py-2 px-4 space-y-2">
+    <a href="#about" class="hover:text-blue-600 transition py-1">About Me</a>
+    <a href="#skills" class="hover:text-blue-600 transition py-1">My Works</a>
+    <a href="#projects" class="hover:text-blue-600 transition py-1">Projects</a>
+    <a href="#certificates" class="hover:text-blue-600 transition py-1">Certificates</a>
+    <a href="#contact" class="hover:text-blue-600 transition py-1">Contact</a>
   </div>
 </nav>
 
 <!-- Hero Section -->
 <section class="parallax h-screen flex items-center justify-center text-white text-center"
   style="background-image: url('https://images.unsplash.com/photo-1508780709619-79562169bc64?auto=format&fit=crop&w=1920&q=80');">
-  <div class="bg-black bg-opacity-50 p-10 rounded-xl shadow-2xl fade-in">
-    <h1 class="text-5xl font-extrabold">Manav Sarvaiya</h1>
-    <p class="text-xl mt-4">B.Tech IT Student | Web Developer</p>
+  <div class="bg-black bg-opacity-50 p-6 md:p-10 rounded-xl shadow-2xl fade-in mx-4">
+    <h1 class="text-3xl md:text-5xl font-extrabold mb-2 gradient-text">Manav Sarvaiya</h1>
+    <p class="text-lg md:text-xl mt-4">B.Tech IT Student | Web Developer</p>
   </div>
 </section>
 
 <!-- About Section -->
-<section id="about" class="h-screen py-16 px-6 md:px-20 parallax"
+<section id="about" class="min-h-screen py-12 md:py-16 px-4 md:px-20 parallax"
   style="background-image: url('https://img.freepik.com/premium-photo/black-table-background-with-black-notebbok-laptop-tea-cup-copyspace-your-text-3d-rendering-mock-up_670147-29947.jpg?semt=ais_hybrid&w=740');">
-  <div class="bg-white bg-opacity-90 p-8 rounded-lg fade-in">
-    <h2 class="text-4xl font-bold text-center mb-6">About Me</h2>
-    <p class="text-center max-w-4xl mx-auto text-lg leading-relaxed">
-      I’m <b>Manav</b>, a developer passionate about startups and innovation.
-
-Currently, I’m 3rd year of B-Tech IT, where I manage Frontend development for projects. Additionally, I am the founder of SPARSH by R Naturals is an Indian online store—based in Gujarat—that offers premium, handmade natural hair-care products. Their portfolio includes shampoos, masks, oils, gels, and natural dyes, all crafted in small batches using organic and herbal ingredients with no harsh chemicals. The aim: to nourish the scalp, promote healthy hair growth, and restore shine—all through traditional, time‑tested methods.
-
-Since I started my journey in the digital world in 2023, I first immersed myself in design before moving into development. I followed a varied learning path, acquiring different skills that proved valuable and allowed me to develop strong lateral thinking abilities.
-
-In 2023, I began working in design and development services to 
-
-At the beginning of 2021, I joined the team at Daje!, a Roman startup born during the pandemic with the idea of creating a local marketplace in Rome and building a community where people gather to buy online products grown, crafted, or carefully chosen by the friendly neighborhood shopkeepers. Here, I covered both design and development roles simultaneously.
-
-Later, I joined Baasbox, a former innovative startup now a company offering strategy, design, and development services to businesses of various sizes and sectors, as a developer.
-
-Currently, I continue working at Baasbox and providing freelance services, collaborating with companies, agencies, and brands to help them achieve their goals effectively and sustainably. I am open to new collaboration opportunities and available to discuss interesting projects.
-
-Moreover, I have been passionate about launching side projects since the beginning. Although most of them might turn out to be failures, I use them as opportunities to create connections and to grow personally. Experimentation is an important source of growth and inspiration for me.
-
-If you need me...
-Write me!
-    </p>
+  <div class="bg-white bg-opacity-90 p-6 md:p-8 rounded-lg fade-in mx-2 md:mx-0">
+    <div class="section-heading-wrapper">
+      <h2 class="section-heading text-3xl md:text-4xl">
+        <span class="heading-highlight">About Me</span>
+      </h2>
+    </div>
+    <div class="max-w-4xl mx-auto text-base md:text-lg leading-relaxed space-y-4">
+      <p>I'm <b>Manav</b>, a developer passionate about startups and innovation.</p>
+      
+      <p>Currently, I'm in my 3rd year of B-Tech IT, where I manage Frontend development for projects. Additionally, I am the founder of SPARSH by R Naturals, an Indian online store—based in Gujarat—that offers premium, handmade natural hair-care products.</p>
+      
+      <p>Since I started my journey in the digital world in 2023, I first immersed myself in design before moving into development. I followed a varied learning path, acquiring different skills that proved valuable and allowed me to develop strong lateral thinking abilities.</p>
+      
+      <p>In 2023, I began working in design and development services. At the beginning of 2021, I joined the team at Daje!, a Roman startup born during the pandemic with the idea of creating a local marketplace in Rome and building a community where people gather to buy online products grown, crafted, or carefully chosen by the friendly neighborhood shopkeepers. Here, I covered both design and development roles simultaneously.</p>
+      
+      <p>Later, I joined Baasbox, a former innovative startup now a company offering strategy, design, and development services to businesses of various sizes and sectors, as a developer.</p>
+      
+      <p>Currently, I continue working at Baasbox and providing freelance services, collaborating with companies, agencies, and brands to help them achieve their goals effectively and sustainably. I am open to new collaboration opportunities and available to discuss interesting projects.</p>
+      
+      <p>Moreover, I have been passionate about launching side projects since the beginning. Although most of them might turn out to be failures, I use them as opportunities to create connections and to grow personally. Experimentation is an important source of growth and inspiration for me.</p>
+      
+      <p class="font-semibold">If you need me... Write me!</p>
+    </div>
   </div>
 </section>
 
 <!-- Skills + Projects Section (Merged) -->
-<section id="skills" class="min-h-screen py-16 px-6 md:px-20 parallax"
+<section id="skills" class="min-h-screen py-12 md:py-16 px-4 md:px-20 parallax"
   style="background-image: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjQ0NS10YXVzLTAyYi10ZWNobm9sb2d5YmFja2dyb3VuZGlkZWFfMl8wLmpwZw.jpg');">
-  <div class="bg-white bg-opacity-90 p-8 rounded-lg fade-in">
-    <h2 class="text-4xl font-bold text-center mb-10">My Works</h2>
-    <h3 class="text-2xl font-semibold mb-4">Skills</h3>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-10">
-      <div class="bg-white p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center">HTML</div>
-      <div class="bg-white p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center">CSS</div>
-      <div class="bg-white p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center">JavaScript</div>
-      <div class="bg-white p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center">React.js</div>
-      <div class="bg-white p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center">Node.js</div>
-      <div class="bg-white p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center">MySQL</div>
-      <div class="bg-white p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center">MongoDB</div>
-      <div class="bg-white p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center">C</div>
-      <div class="bg-white p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center">C++</div>
-      <div class="bg-white p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center">Java</div>
-      <div class="bg-white p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center">Python</div>
+  <div class="bg-white bg-opacity-90 p-6 md:p-8 rounded-lg fade-in mx-2 md:mx-0">
+    <div class="section-heading-wrapper">
+      <h2 class="section-heading text-3xl md:text-4xl">
+        <span class="heading-highlight">My Works</span>
+      </h2>
+    </div>
+    
+    <div class="mb-12">
+      <div class="section-heading-wrapper">
+        <h3 class="section-heading text-xl md:text-2xl">
+          <span class="heading-highlight">Skills</span>
+        </h3>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
+        <div class="bg-white p-3 md:p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center text-sm md:text-base">HTML</div>
+        <div class="bg-white p-3 md:p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center text-sm md:text-base">CSS</div>
+        <div class="bg-white p-3 md:p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center text-sm md:text-base">JavaScript</div>
+        <div class="bg-white p-3 md:p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center text-sm md:text-base">React.js</div>
+        <div class="bg-white p-3 md:p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center text-sm md:text-base">Node.js</div>
+        <div class="bg-white p-3 md:p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center text-sm md:text-base">MySQL</div>
+        <div class="bg-white p-3 md:p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center text-sm md:text-base">MongoDB</div>
+        <div class="bg-white p-3 md:p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center text-sm md:text-base">C</div>
+        <div class="bg-white p-3 md:p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center text-sm md:text-base">C++</div>
+        <div class="bg-white p-3 md:p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center text-sm md:text-base">Java</div>
+        <div class="bg-white p-3 md:p-4 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-100 text-center text-sm md:text-base">Python</div>
+      </div>
     </div>
 
-    <h3 class="text-2xl font-semibold mb-4">Projects</h3>
-    <div class="grid md:grid-cols-2 gap-10">
-      <div class="bg-gray-100 p-6 rounded-xl shadow-lg transform transition hover:scale-105 hover:bg-blue-50 cursor-pointer"
-           onclick="window.open('https://www.sparshnaturals.shop', '_blank')">
-        <img src="IMAGE1.png" alt="SPARSH Project" class="w-full h-40 object-cover rounded-md mb-4">
-        <h3 class="text-2xl font-semibold mb-2">SPARSH – E-commerce Website</h3>
-        <p>
-          Built for Smart India Hackathon – Developed a full-stack e-commerce platform for my startup SPARSH offering hair-care products. Key features include user authentication via Supabase, shopping cart functionality, order placement with Razorpay integration, and customer information collection through interactive forms. Implemented email order notifications using Formspree and integrated Shiprocket for shipping logistics. Also included return and refund policy features to enhance customer satisfaction.
-        </p>
+    <div>
+      <div class="section-heading-wrapper">
+        <h3 class="section-heading text-xl md:text-2xl">
+          <span class="heading-highlight">Projects</span>
+        </h3>
       </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+        <div class="bg-gray-100 p-4 md:p-6 rounded-xl shadow-lg transform transition hover:scale-105 hover:bg-blue-50 cursor-pointer"
+             onclick="window.open('https://www.sparshnaturals.shop', '_blank')">
+          <img src="IMAGE1.png" alt="SPARSH Project" class="w-full h-40 object-cover rounded-md mb-3 md:mb-4">
+          <h3 class="text-xl md:text-2xl font-semibold mb-2">SPARSH – E-commerce Website</h3>
+          <p class="text-sm md:text-base">
+            Built for Smart India Hackathon – Developed a full-stack e-commerce platform for my startup SPARSH offering hair-care products. Key features include user authentication via Supabase, shopping cart functionality, order placement with Razorpay integration, and customer information collection through interactive forms.
+          </p>
+        </div>
 
-      <div class="bg-gray-100 p-6 rounded-xl shadow-lg transform transition hover:scale-105 hover:bg-blue-50 cursor-pointer"
-           onclick="window.open('https://women-s-safety-website.vercel.app')">
-        <img src="IMAGE2.png" alt="Women's Safety Project" class="w-full h-40 object-cover rounded-md mb-4">
-        <h3 class="text-2xl font-semibold mb-2">Women’s Safety Website</h3>
-        <p>
-          Built for Smart India Hackathon – In this project I have created a women's safety website with live location tracking, SOS alerts, emergency calls, text messaging, safety tips, and videos/shorts for protection.
-        </p>
-      </div>
+        <div class="bg-gray-100 p-4 md:p-6 rounded-xl shadow-lg transform transition hover:scale-105 hover:bg-blue-50 cursor-pointer"
+             onclick="window.open('https://women-s-safety-website.vercel.app')">
+          <img src="IMAGE2.png" alt="Women's Safety Project" class="w-full h-40 object-cover rounded-md mb-3 md:mb-4">
+          <h3 class="text-xl md:text-2xl font-semibold mb-2">Women's Safety Website</h3>
+          <p class="text-sm md:text-base">
+            Built for Smart India Hackathon – In this project I have created a women's safety website with live location tracking, SOS alerts, emergency calls, text messaging, safety tips, and videos/shorts for protection.
+          </p>
+        </div>
 
-      <div class="bg-gray-100 p-6 rounded-xl shadow-lg transform transition hover:scale-105 hover:bg-blue-50 cursor-pointer"
-           onclick="window.open('https://wt-project-sable.vercel.app')">
-        <img src="IMAGE3.png" alt="Women's Safety Project" class="w-full h-40 object-cover rounded-md mb-4">
-        <h3 class="text-2xl font-semibold mb-2">Make My Trip Clone</h3>
-        <p>
-          In this project, I have made a clone of the MakeMyTrip website, where users can log in and book flights, hotels, trains, etc., directly from the original MakeMyTrip website.
-        </p>
+        <div class="bg-gray-100 p-4 md:p-6 rounded-xl shadow-lg transform transition hover:scale-105 hover:bg-blue-50 cursor-pointer"
+             onclick="window.open('https://wt-project-sable.vercel.app')">
+          <img src="IMAGE3.png" alt="Women's Safety Project" class="w-full h-40 object-cover rounded-md mb-3 md:mb-4">
+          <h3 class="text-xl md:text-2xl font-semibold mb-2">Make My Trip Clone</h3>
+          <p class="text-sm md:text-base">
+            In this project, I have made a clone of the MakeMyTrip website, where users can log in and book flights, hotels, trains, etc., directly from the original MakeMyTrip website.
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Certificates Section -->
-<section id="certificates" class="h-screen py-16 px-6 md:px-20 parallax"
+<section id="certificates" class="py-12 md:py-16 px-4 md:px-20 parallax min-h-screen"
   style="background-image: url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA3L3JlbWl4cHJvamVjdDQtZm9uLTEwMDEtMS1sLmpwZw.jpg');">
-    <h2 class="text-4xl font-bold text-center mb-10">Certificates</h2>
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 fade-in">
-      <div class="bg-white p-5 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-200 cursor-pointer" onclick="window.open('c3.pdf')">
-        <h3 class="text-xl font-semibold">Intro to Python – DataCamp</h3>
-        <p class="text-sm text-gray-600 mt-1">Certification for completing Data Camp's course on Basic Python</p>
+  <div class="max-w-6xl mx-auto">
+    <div class="section-heading-wrapper">
+      <h2 class="section-heading text-3xl md:text-4xl">
+        <span class="heading-highlight">Certificates</span>
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 fade-in">
+      <div class="bg-white p-4 md:p-5 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-200 cursor-pointer pulse-hover" onclick="window.open('c3.pdf')">
+        <h3 class="text-lg md:text-xl font-semibold">Intro to Python – DataCamp</h3>
+        <p class="text-xs md:text-sm text-gray-600 mt-1">Certification for completing Data Camp's course on Basic Python</p>
       </div>
 
-      <div class="bg-white p-5 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-200 cursor-pointer" onclick="window.open('c2.pdf')">
-        <h3 class="text-xl font-semibold">Intermediate Python – DataCamp</h3>
-        <p class="text-sm text-gray-600 mt-1">Certification for completing Data Camp's course on Intermediate Python</p>
+      <div class="bg-white p-4 md:p-5 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-200 cursor-pointer pulse-hover" onclick="window.open('c2.pdf')">
+        <h3 class="text-lg md:text-xl font-semibold">Intermediate Python – DataCamp</h3>
+        <p class="text-xs md:text-sm text-gray-600 mt-1">Certification for completing Data Camp's course on Intermediate Python</p>
       </div>
 
-      <div class="bg-white p-5 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-200 cursor-pointer" onclick="window.open('c1.pdf')">
-        <h3 class="text-xl font-semibold">Generative AI & ChatGPT – Great Learning</h3>
-        <p class="text-sm text-gray-600 mt-1">Workshop Completion</p>
+      <div class="bg-white p-4 md:p-5 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-200 cursor-pointer pulse-hover" onclick="window.open('c1.pdf')">
+        <h3 class="text-lg md:text-xl font-semibold">Generative AI & ChatGPT – Great Learning</h3>
+        <p class="text-xs md:text-sm text-gray-600 mt-1">Workshop Completion</p>
       </div>
 
-      <div class="bg-white p-5 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-200 cursor-pointer" onclick="window.open('https://www.mygreatlearning.com/certificate/EPVQFPTC', '_blank')">
-        <h3 class="text-xl font-semibold">DSA – NPTEL</h3>
-        <p class="text-sm text-gray-600 mt-1">Certification for completing NPTEL's course on Data Structures and
-Algorithms</p>
+      <div class="bg-white p-4 md:p-5 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-200 cursor-pointer pulse-hover" onclick="window.open('https://www.mygreatlearning.com/certificate/EPVQFPTC', '_blank')">
+        <h3 class="text-lg md:text-xl font-semibold">DSA – NPTEL</h3>
+        <p class="text-xs md:text-sm text-gray-600 mt-1">Certification for completing NPTEL's course on Data Structures and Algorithms</p>
       </div>
 
-      <div class="bg-white p-5 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-200 cursor-pointer" onclick="window.open('https://www.mygreatlearning.com/certificate/EPVQFPTC', '_blank')">
-        <h3 class="text-xl font-semibold">C++ – NPTEL</h3>
-        <p class="text-sm text-gray-600 mt-1">Certification for completing NPTEL's course on C++</p>
+      <div class="bg-white p-4 md:p-5 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-200 cursor-pointer pulse-hover" onclick="window.open('https://www.mygreatlearning.com/certificate/EPVQFPTC', '_blank')">
+        <h3 class="text-lg md:text-xl font-semibold">C++ – NPTEL</h3>
+        <p class="text-xs md:text-sm text-gray-600 mt-1">Certification for completing NPTEL's course on C++</p>
       </div>
 
-      <div class="bg-white p-5 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-200 cursor-pointer" onclick="window.open('https://www.mygreatlearning.com/certificate/EPVQFPTC', '_blank')">
-        <h3 class="text-xl font-semibold">C – NPTEL</h3>
-        <p class="text-sm text-gray-600 mt-1">Certification for completing NPTEL's course on C</p>
+      <div class="bg-white p-4 md:p-5 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-200 cursor-pointer pulse-hover" onclick="window.open('https://www.mygreatlearning.com/certificate/EPVQFPTC', '_blank')">
+        <h3 class="text-lg md:text-xl font-semibold">C – NPTEL</h3>
+        <p class="text-xs md:text-sm text-gray-600 mt-1">Certification for completing NPTEL's course on C</p>
       </div>
 
-      <div class="bg-white p-5 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-200 cursor-pointer" onclick="window.open('c5.jpeg')">
-        <h3 class="text-xl font-semibold">JAVA[Basic] – HACKERRANK</h3>
-        <p class="text-sm text-gray-600 mt-1">Certification for completing Hackerrank's skill Course</p>
+      <div class="bg-white p-4 md:p-5 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-200 cursor-pointer pulse-hover" onclick="window.open('c5.jpeg')">
+        <h3 class="text-lg md:text-xl font-semibold">JAVA[Basic] – HACKERRANK</h3>
+        <p class="text-xs md:text-sm text-gray-600 mt-1">Certification for completing Hackerrank's skill Course</p>
       </div>
 
-      <div class="bg-white p-5 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-200 cursor-pointer" onclick="window.open('c4.pdf')">
-        <h3 class="text-xl font-semibold">Introduction to Web Designing – Great Learning</h3>
-        <p class="text-sm text-gray-600 mt-1">Workshop Completion</p>
+      <div class="bg-white p-4 md:p-5 rounded-xl shadow-md transform transition hover:scale-105 hover:bg-blue-200 cursor-pointer pulse-hover" onclick="window.open('c4.pdf')">
+        <h3 class="text-lg md:text-xl font-semibold">Introduction to Web Designing – Great Learning</h3>
+        <p class="text-xs md:text-sm text-gray-600 mt-1">Workshop Completion</p>
       </div>
     </div>
+  </div>
 </section>
 
 <!-- Contact Section -->
-<section id="contact" class="relative bg-fixed bg-center bg-cover py-20 px-6 md:px-20"
+<section id="contact" class="relative bg-fixed bg-center bg-cover py-12 md:py-20 px-4 md:px-20"
   style="background-image: url('https://static.vecteezy.com/system/resources/thumbnails/023/308/048/small/abstract-grey-metallic-overlap-on-dark-circle-mesh-pattern-design-modern-luxury-futuristic-background-vector.jpg');">
   
   <!-- White Card Wrapper -->
-  <div class="bg-white bg-opacity-95 shadow-xl rounded-lg p-8 max-w-3xl mx-auto backdrop-blur-sm">
+  <div class="bg-white bg-opacity-95 shadow-xl rounded-lg p-6 md:p-8 max-w-3xl mx-auto backdrop-blur-sm">
     
     <!-- Section Heading -->
-    <h2 class="text-4xl font-bold text-center mb-10">Contact</h2>
+    <div class="section-heading-wrapper">
+      <h2 class="section-heading text-3xl md:text-4xl">
+        <span class="heading-highlight">Get In Touch</span>
+      </h2>
+    </div>
     
     <!-- Contact Info -->
-    <address class="not-italic text-lg text-gray-700 leading-relaxed space-y-2 mb-6">
+    <address class="not-italic text-base md:text-lg text-gray-700 leading-relaxed space-y-2 mb-4 md:mb-6">
       <p>📞 <a href="tel:+918780003738" class="hover:text-blue-600 transition">+91 87800 03738</a></p>
       <p>📧 <a href="mailto:manavsarvaiya188@gmail.com" class="text-blue-600 hover:underline">manavsarvaiya188@gmail.com</a></p>
       <p>📍 Bhavnagar, Gujarat, India</p>
@@ -201,46 +332,63 @@ Algorithms</p>
     </address>
 
     <!-- Resume Button -->
-    <div class="mb-6 text-center">
+    <div class="mb-4 md:mb-6 text-center">
       <a href="MANAV SARVAIYA 2.pdf" download
-        class="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition duration-300">
+        class="inline-block px-4 py-2 md:px-6 md:py-3 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition duration-300 text-sm md:text-base transform hover:-translate-y-1">
         <i class="fas fa-download mr-2"></i>Download Resume
       </a>
     </div>
 
     <!-- Social Media Icons -->
-    <div class="flex justify-center space-x-6 mb-8 text-xl text-gray-700">
-      <a href="https://github.com/Manav32478" target="_blank" rel="noopener" class="hover:text-gray-900"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/manav-sarvaiya" target="_blank" rel="noopener" class="hover:text-blue-700"><i class="fab fa-linkedin"></i></a>
-      <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="hover:text-pink-600"><i class="fab fa-instagram"></i></a>
+    <div class="flex justify-center space-x-4 md:space-x-6 mb-6 md:mb-8 text-lg md:text-xl text-gray-700">
+      <a href="https://github.com/Manav32478" target="_blank" rel="noopener" class="hover:text-gray-900 transform hover:scale-125 transition"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/manav-sarvaiya" target="_blank" rel="noopener" class="hover:text-blue-700 transform hover:scale-125 transition"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="hover:text-pink-600 transform hover:scale-125 transition"><i class="fab fa-instagram"></i></a>
     </div>
 
     <!-- Contact Form -->
-    <form id="contactForm" action="https://formspree.io/f/xvgraqak" method="POST" class="space-y-4 text-left" onsubmit="return validateForm(event)">
+    <form id="contactForm" action="https://formspree.io/f/xvgraqak" method="POST" class="space-y-3 md:space-y-4 text-left" onsubmit="return validateForm(event)">
       <div>
-        <label class="block text-sm font-medium text-gray-700">Name</label>
+        <label class="block text-sm md:text-base font-medium text-gray-700">Name</label>
         <input type="text" name="name" id="name" required placeholder="Your Name"
-          class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white" />
+          class="w-full px-3 py-2 md:px-4 md:py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-sm md:text-base" />
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700">Email</label>
+        <label class="block text-sm md:text-base font-medium text-gray-700">Email</label>
         <input type="email" name="email" id="email" required placeholder="Your Email"
-          class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white" />
+          class="w-full px-3 py-2 md:px-4 md:py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-sm md:text-base" />
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700">Message</label>
-        <textarea name="message" id="message" rows="4" required placeholder="Your Message"
-          class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white"></textarea>
+        <label class="block text-sm md:text-base font-medium text-gray-700">Message</label>
+        <textarea name="message" id="message" rows="3" required placeholder="Your Message"
+          class="w-full px-3 py-2 md:px-4 md:py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-sm md:text-base"></textarea>
       </div>
       <button type="submit"
-        class="w-full py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition">
+        class="w-full py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition text-sm md:text-base transform hover:-translate-y-1">
         Send Message
       </button>
     </form>
   </div>
 </section>
 
+<!-- Footer -->
+<footer class="bg-gray-800 text-white text-center py-4 text-sm md:text-base">
+  <p>© 2025 Manav Sarvaiya | Designed with 💙 using Tailwind CSS & JS</p>
+</footer>
+
 <script>
+  // Mobile menu toggle
+  document.querySelector('.mobile-menu-button').addEventListener('click', function() {
+    document.querySelector('.mobile-menu').classList.toggle('active');
+  });
+
+  // Close mobile menu when clicking a link
+  document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelector('.mobile-menu').classList.remove('active');
+    });
+  });
+
   function validateForm(event) {
     event.preventDefault();
     const form = document.getElementById('contactForm');
@@ -267,27 +415,19 @@ Algorithms</p>
       headers: { 'Accept': 'application/json' }
     }).then(response => {
       if (response.ok) {
-        document.getElementById('successMessage').classList.remove('hidden');
+        alert("Message sent successfully!");
         form.reset();
       } else {
         alert("There was an issue sending your message.");
       }
     }).catch(error => {
-      alert("Sent Successfully!");
+      alert("There was an error. Please try again later.");
     });
 
     return false; // Prevent default form submit
   }
-</script>
 
-
-
-<!-- Footer -->
-<footer class="bg-gray-800 text-white text-center py-4">
-  <p>© 2025 Manav Sarvaiya | Designed with 💙 using Tailwind CSS & JS</p>
-</footer>
-
-<script>
+  // Intersection Observer for fade-in animations
   (function() {
     const faders = document.querySelectorAll('.fade-in');
     if (!window.__observerInitialized) {
@@ -303,3 +443,5 @@ Algorithms</p>
     }
   })();
 </script>
+</body>
+</html>
